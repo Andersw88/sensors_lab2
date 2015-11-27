@@ -66,4 +66,28 @@ After the basic setup, a ROS node template was used as a base to process the ima
   \label{fig:depth-save}
 \end{figure}
 
+\subsection{Color Camera Calibration}
+\label{sec:color_camera_calibration}
+%TODO!
+
+\subsection{Noise Characterization}
+\label{sec:noize_characterization}
+
+\subsection{Noise Filtering}
+\label{sec:noise_filtering}
+In this part we applied several filters to the depth images in order to remove the noise from the measurement data. These filters are:
+\begin{itemize}
+\item Gaussian blur
+\item Median filtering
+\item Bilateral filtering
+\item Median over several image samples
+\item Average over several image samples
+\end{itemize}
+The effect on the image data after the application of the filters will be discussed in the following.
+
+\subsubsection{NaN values}
+\label{sec:nan_statement}
+If objects in the scene are closer than the minimum range of the camera allows 
+
+
 \end{document}
