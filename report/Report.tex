@@ -16,20 +16,54 @@ For this lab, the ASUS Xtion Pro sensor was used as a structured light camera.
 The task at hand was to set up and calibrating the sensor, as well as to characterize the noise in the depth measurement and to set up filtering routines.
 \subsection{Basic setup}
 To set up the camera, the package \texttt{openni2} for ros-indigo was used. When launching the node \texttt{openni2.launch}, it publishes a wide range of topics from the camera.\par %TODO: Maybe list ALL the topics?
-For this laboration, only the topics which publish a viewable image were of interest. This included two main topics:%TODO: Explain the opencv shiat
+For this laboration, only the topics which publish a viewable image were of interest. This included two main topics:%TODO: Explain the opencv shit
 
 \begin{itemize}
   \item \texttt{/camera/rgb/}\\
-    This topic publishes data from the RGB camera on the ASUS Xtion Pro. The topic \texttt{/camera/rgb/raw} shows the unprocessed RGB image like a regular camera. A sample image from this topic is shown in figure %\ref{} TODO!
+    This topic publishes data from the RGB camera on the ASUS Xtion Pro. The topic \texttt{/camera/rgb/raw} shows the unprocessed RGB image like a regular camera. A sample image from this topic is shown in figure \ref{fig:rgb-raw}. %TODO!
   \item \texttt{/camera/depth/}\\
-    This topic publishes the depth data as a 2D-array of float variables with the depth values in meters.
+    This topic publishes the depth data as a 2D-array of float variables containing the depth values in meters. A sample image from this topic is shown in figure \ref{fig:depth}.
+  \item \texttt{/camera/depth\_registered}\\
+    This topic combines the RGB and the depth image into a coloured point cloud. A visualization of this topic through the tool \texttt{rviz} is shown in figure 
 \end{itemize}
 
 \begin{figure}
   \centering
-  \includegraphics[width=\defaultwidth]{narf.png}
+  \includegraphics[width=\defaultwidth]{TODO.png}
   \label{fig:rgb-raw}
   \caption{Output image of \texttt{/camera/rgb/raw}}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{TODO.png}
+  \caption{Output image of \texttt{/camera/depth/}}
+  \label{fig:depth}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{TODO.png}
+  \caption{Screenshot of the vizualized pointcloud of \texttt{/camera/depth\_registered}}
+  \label{fig:depth_registered}
+\end{figure}
+
+\subsection{Basic ROS node}
+\label{sec:basic-ros}
+After the basic setup, a ROS node template was used as a base to process the images and point clouds published. The received images are shown in figure \ref{fig:rgb-save} and figure \ref{fig:depth-save}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{TODO.png}
+  \caption{Save of the RGB image}
+  \label{fig:rgb-save}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{TODO.png}
+  \caption{Save of the depth point cloud}
+  \label{fig:depth-save}
 \end{figure}
 
 \end{document}
