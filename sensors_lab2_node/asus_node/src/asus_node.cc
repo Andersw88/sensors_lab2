@@ -38,6 +38,7 @@
  */
 
 //include headers from ROS
+// #include <array>
 #include <sstream>
 #include <string>
 #include <ros/ros.h>
@@ -60,6 +61,10 @@
 #define RGB_WINDOW "RGB Image"
 #define DEPTH_WINDOW "Depth Image"
 
+#define SPICE 0
+#define SHOW_IMG 1
+#define SAVE_IMG 1
+
 
 int DELAY_CAPTION = 1500;
 int DELAY_BLUR = 100;
@@ -78,13 +83,13 @@ struct windowDataPublisher
   int windowSize;
   ros::Publisher variance_pub;
   ros::Publisher mean_pub;
-  windowDataPublisher(ros::NodeHandle n_, int windowSize) : windowSize(windowSize) 
+  windowDataPublisher(ros::NodeHandle n_, int windowSize, std::string name) : windowSize(windowSize) 
   {
-    std::ostringstream os ;
-    os << windowSize ;
-    std::string r = os.str();
-    variance_pub = n_.advertise<std_msgs::Float32>("/depth/variance_" + r, 1000);
-    mean_pub = n_.advertise<std_msgs::Float32>("/depth/mean_"+ r, 1000);
+//     std::ostringstream os ;
+//     os << windowSize ;
+//     std::string r = os.str();
+    variance_pub = n_.advertise<std_msgs::Float32>("/depth/" + name + "/variance", 1000);
+    mean_pub = n_.advertise<std_msgs::Float32>("/depth/"+ name + "/mean", 1000);
   }
   
   void calcData(const cv::Mat& img)
@@ -140,6 +145,99 @@ struct windowDataPublisher
   
 };
 
+struct CircularList
+  {
+    int curImgIndex;
+    std::vector<cv::Mat> images;
+    std::vector<float> values;
+    CircularList() : images(10), curImgIndex(0), values(10,NAN) {}
+
+    void addImg(const cv::Mat& img)
+    {
+      images[curImgIndex%images.size()] = img;
+      curImgIndex++;
+    }
+    
+  cv::Mat movingMeanFilter()
+  {
+    
+    cv::Mat meanImg = cv::Mat(images[0].size(),images[0].type());
+    if(curImgIndex > 10)
+    {
+
+// 	    cv::accumulate(meanImg,imagesCircularList[i]);
+      for(int i = 0; i < images[0].rows; i++)
+      {
+	for(int j = 0; j < images[0].cols; j++)
+	{
+	  float points = 0;
+	  float value = 0;
+// 	      meanImg.at<float>(i,j) = 0;
+	  for(int k = 0; k < images.size(); k++)
+	  {
+	    if(!std::isnan(images[k].at<float>(i,j)))
+	    {
+	      value += images[k].at<float>(i,j);
+	      points++;
+	    }
+	  }
+	  meanImg.at<float>(i,j) = value/points;
+// 	      printf("Failed to %f\n",meanImg.at<float>(i,j));
+	}
+      }
+// 	   ROS_ERROR("Failed to transform depth image.");
+      
+// 	cv::imshow("DEPTH_WINDOW_mean", meanImg/7.0);
+    }
+    return meanImg;
+  }
+  
+  cv::Mat movingMedianFilter()
+  {
+    cv::Mat medianImg = cv::Mat(images[0].size(),images[0].type());
+    if(curImgIndex > 10)
+    {
+      for(int i = 0; i < images[0].rows; i++)
+      {
+	for(int j = 0; j < images[0].cols; j++)
+	{
+	  float points = 0;
+	  values.clear();
+	  for(int k = 0; k < images.size(); k++)
+	  {
+	    float value = images[k].at<float>(i,j);
+	    if(!std::isnan(value))
+	    {
+	      values.push_back(value);
+// 	      for(int m = 0; m <= values.size(); m++)
+// 	      {
+// 		if(value < values[m])
+// 		{
+// 		  values.insert(values.begin()+m,value);
+// 		  break;
+// 		}
+// 		else if(m == values.size())
+// 		{
+// 		  values.push_back(value);
+// 		  break;
+// 		}
+// 	      }
+	    }
+	  }
+	  std::sort(values.begin(),values.end());
+	  if(values.size() == 0)
+	    medianImg.at<float>(i,j) = NAN;
+	  else
+	    medianImg.at<float>(i,j) = values[values.size()/2];
+	}
+      }
+
+// 	cv::imshow("medianImg", medianImg/7.0);
+    }
+    return medianImg;
+  }
+};
+
 
 //Your Node Class
 class AsusNode {
@@ -154,17 +252,42 @@ class AsusNode {
     ros::Subscriber points_sub_;
     ros::Subscriber depth_sub_;
     ros::Subscriber rgb_sub_;
-//     ros::Publisher variance_pub;
-//     ros::Publisher mean_pub;
 
     //topics to subscribe to
     std::string subscribe_topic_point;
     std::string subscribe_topic_depth;
     std::string subscribe_topic_color;
+    // 	img2 = movingMean.movingMeanFilter(img.clone());
+// 	cv::imshow("MovingMeanFilter", img2/7.0f);
+    windowDataPublisher size40_org;
+    windowDataPublisher size60_org;
+    windowDataPublisher size80_org;
     
-    windowDataPublisher size40;
-    windowDataPublisher size60;
-    windowDataPublisher size80;
+    windowDataPublisher size40_mean;
+    windowDataPublisher size60_mean;
+    windowDataPublisher size80_mean;
+    
+    windowDataPublisher size40_gauss;
+    windowDataPublisher size60_gauss;
+    windowDataPublisher size80_gauss;
+    
+    windowDataPublisher size40_bilat;
+    windowDataPublisher size60_bilat;
+    windowDataPublisher size80_bilat;
+   
+    windowDataPublisher size40_mean10;
+    windowDataPublisher size60_mean10;
+    windowDataPublisher size80_mean10;
+    
+    windowDataPublisher	size40_median;
+    windowDataPublisher size60_median;
+    windowDataPublisher size80_median;
+    
+    CircularList movingMean;
+//     CircularList movingMean_60;
+//     CircularList movingMean_80;
+    
+
 
     public:
     AsusNode() {
@@ -172,9 +295,29 @@ class AsusNode {
 	nh_ = ros::NodeHandle("~");
 	n_ = ros::NodeHandle();
 	
-	size40 = windowDataPublisher(n_,40);
-	size60 = windowDataPublisher(n_,60);
-	size80 = windowDataPublisher(n_,80);
+	size40_org = windowDataPublisher(n_,40,"org_40");
+	size60_org = windowDataPublisher(n_,60,"org_60");
+	size80_org = windowDataPublisher(n_,80,"org_80");
+	
+	size40_mean = windowDataPublisher(n_,40,"mean_40");
+	size60_mean = windowDataPublisher(n_,60,"mean_60");
+	size80_mean = windowDataPublisher(n_,80,"mean_80");
+	
+	size40_gauss = windowDataPublisher(n_,40,"gauss_40");
+	size60_gauss = windowDataPublisher(n_,60,"gauss_60");
+	size80_gauss = windowDataPublisher(n_,80,"gauss_80");
+	
+	size40_bilat = windowDataPublisher(n_,40,"bilat_40");
+	size60_bilat = windowDataPublisher(n_,60,"bilat_60");
+	size80_bilat = windowDataPublisher(n_,80,"bilat_80");
+	
+	size40_mean10 = windowDataPublisher(n_,40,"mean10_40");
+	size60_mean10 = windowDataPublisher(n_,60,"mean10_60");
+	size80_mean10 = windowDataPublisher(n_,80,"mean10_80");
+	
+	size40_median = windowDataPublisher(n_,40,"median_40");
+	size60_median = windowDataPublisher(n_,60,"median_60");
+	size80_median = windowDataPublisher(n_,80,"median_80");
 	
 	//read in topic names from the parameter server
 	nh_.param<std::string>("points_topic",subscribe_topic_point,"/camera/depth_registered/points");
@@ -191,10 +334,26 @@ class AsusNode {
 	rgb_sub_ = n_.subscribe(subscribe_topic_color, 1, &AsusNode::rgbCallback, this);
 
 	//create opencv windows
-	cv::namedWindow(RGB_WINDOW);
-	cv::namedWindow(DEPTH_WINDOW);
-	cv::namedWindow( window_name, CV_WINDOW_AUTOSIZE );
+// 	cv::namedWindow(RGB_WINDOW);
+// 	cv::namedWindow(DEPTH_WINDOW);
+// 	cv::namedWindow( window_name, CV_WINDOW_AUTOSIZE );
     }
+    
+    void dispDepthImg(std::string name, cv::Mat img)
+    {
+#if SHOW_IMG
+      cv::imshow( name, img/7.0f );
+#endif
+#if SAVE_IMG
+      
+#if SPICE
+      name += "_spice";
+#endif
+      (img.clone()).convertTo(img, CV_32S, 256.0/7.0);
+      cv::imwrite( "/home/anders/images/depth_"+ name +".png", img);
+#endif
+    }
+
 
     // Callback for pointclouds
     void points2Callback(const sensor_msgs::PointCloud2::ConstPtr& msg_in)
@@ -216,7 +375,9 @@ class AsusNode {
 	    bridge = cv_bridge::toCvCopy(msg, "bgr8");
 	}
 	catch (cv_bridge::Exception& e)
-	{
+	{// 	size40_mean.calcData(img3);
+// 	size60_mean.calcData(img3);
+// 	size80_mean.calcData(img3);
 	    ROS_ERROR("Failed to transform rgb image.");
 	    return;
 
@@ -224,7 +385,7 @@ class AsusNode {
 	
 
 	/* do something colorful"*/
-// 	cv::imwrite( "/home/anders/images/rgb.bmp", bridge->image);
+	cv::imwrite( "/home/anders/images/rgb.bmp", bridge->image);
 
 	
 	cv::imshow(RGB_WINDOW, bridge->image);
@@ -278,6 +439,8 @@ class AsusNode {
 //       display_dst( DELAY_BLUR );
     }
     
+    
+    
 
     //callback for RGB images
     void depthCallback(const sensor_msgs::Image::ConstPtr& msg)
@@ -295,94 +458,126 @@ class AsusNode {
 	}
 	
 	cv::Mat img = bridge->image;
+	cv::Mat img2;
+	cv::Mat img3;
 	
+#if SPICE
+	for(int i = 0; i < 1000; i++)
+	{
+	  int grainX = rand() % img.rows;
+	  int grainY = rand() % img.cols;
+	  int spice = rand() % 2;
+	  
+	  if(!std::isnan(img.at<float>(grainX,grainY)))
+	    img.at<float>(grainX,grainY) = spice*7.0;
+	}
+#endif
+	
+
+// 	
+// 	img2 = movingMean.movingMeanFilter(img);
+// 	cv::imshow("MovingMeanFilter", img2/7.0f);
+	
+	dispDepthImg("Original", img);
+// 	cv::imshow(/7.0f);
+// 
+// 
+// 	cv::Mat3 imgOrg
+// 	(img.clone()).convertTo(imgOrg, CV_32S, 256.0);
+// 	cv::imwrite( "/home/anders/images/depth_"+ name +".png", imgOrg);
+	
+	
+//       img.convertTo(imgNoNaN, CV_32F);
+//       
+//       for(int i = 0; i < imgNoNaN.rows; i++)
+//       {
+// 	for(int j = 0; j < imgNoNaN.cols; j++)
+// 	{
+// 	  if(std::isnan(imgNoNaN.at<float>(i,j)))
+// 	  {
+// 	      imgNoNaN.at<float>(i,j) = 0.0f;
+// 	  }
+// 	}
+//       }
+// 	img.convertTo(img, CV_32FC3);
 // 	saveDepthImages(img);
+	size40_org.calcData(img);
+	size60_org.calcData(img);
+	size80_org.calcData(img);
 	
-	cv::imshow(DEPTH_WINDOW, img);
-	
-	size40.calcData(img);
-	size60.calcData(img);
-	size80.calcData(img);
-	
-	/*
-	int newSizeX = 40;
-	int newSizeY = 40;
+	movingMean.addImg(img.clone());
+	img2 = movingMean.movingMeanFilter();
+	dispDepthImg("MovingMeanFilter", img2);
+	size40_mean10.calcData(img2);
+	size60_mean10.calcData(img2);
+	size80_mean10.calcData(img2);
+// 	cv::imshow("MovingMeanFilter", img2/7.0);
+	img2 = movingMean.movingMedianFilter();
+	dispDepthImg("MovingMedianFilter", img2);
+// 	cv::imshow("MovingMedianFilter", img2/7.0);
+	size40_median.calcData(img2);
+	size60_median.calcData(img2);
+	size80_median.calcData(img2);
 
-	
-	cv::Mat window = img(cv::Range((img.rows-newSizeX)/2,(img.rows+newSizeX)/2),
-			     cv::Range((img.cols-newSizeY)/2,(img.cols+newSizeY)/2));
 
-	
-	float sum = 0;
-	int numPoints = 0;
+	img2 = img;
+	cv::medianBlur ( img2.clone(), img3, 5 );
+	dispDepthImg("medianBlur", img3);
+// 	cv::imshow("medianBlur", img3/7.0);
+	size40_mean.calcData(img3);
+	size60_mean.calcData(img3);
+	size80_mean.calcData(img3);
 
-	for(int i = 0; i < newSizeX; i++)
+	cv::GaussianBlur( img2.clone(), img3, cv::Size( 5, 5 ), 0, 0 );
+	dispDepthImg("GaussianBlur", img3);
+// 	cv::imshow("GaussianBlur", img3/7.0);
+	size40_gauss.calcData(img3);
+	size60_gauss.calcData(img3);
+	size80_gauss.calcData(img3);
+	
+	cv::Mat imgNoNaN = img.clone();
+	for(int i = 0; i < imgNoNaN.rows; i++)
 	{
-	  for(int j = 0; j < newSizeY; j++)
+	  for(int j = 0; j < imgNoNaN.cols; j++)
 	  {
-	    if(!std::isnan(window.at<float>(i,j)))
+	    if(std::isnan(imgNoNaN.at<float>(i,j)))
 	    {
-	      sum += window.at<float>(i,j);
-	      numPoints++;
+	      if(i != 0)
+	      {
+		imgNoNaN.at<float>(i,j) = imgNoNaN.at<float>(i-1,j);
+	      }
+	      else if(j != 0)
+		imgNoNaN.at<float>(i,j) = imgNoNaN.at<float>(i,j-1);
+	      else
+		imgNoNaN.at<float>(i,j) = 0;
 	    }
 	  }
 	}
-	float mean = sum / (numPoints);
-	float stdevSum = 0;
-	
-	for(int i = 0; i < newSizeX; i++)
-	{
-	  for(int j = 0; j < newSizeY; j++)
-	  {
-	    if(!std::isnan(window.at<float>(i,j)))
-	    {
-	      stdevSum += (window.at<float>(i,j) - mean)*(window.at<float>(i,j) - mean);
-// 	      numPoints++;
-	    }
+	img2 = imgNoNaN;
 
+	cv::bilateralFilter ( img2, img3, 6, 3, 3 );
+	
+	for(int i = 0; i < img3.rows; i++)
+	{
+	  for(int j = 0; j < img3.cols; j++)
+	  {
+	    if(std::isnan(img.at<float>(i,j)))
+	    {
+		img3.at<float>(i,j) = NAN;
+	    }
 	  }
 	}
-	float variance = (stdevSum / (float)numPoints);
-	float stdev = sqrt(variance);
-// 	printf("Mean%f, std:%f, numpoints:%d\n",mean,stdev,numPoints);
+// 	img2 = imgNoNaN;
+	dispDepthImg("bilateral", img3);
+// 	cv::imshow("bilateral", img3/7.0);
+	size40_bilat.calcData(img3);
+	size60_bilat.calcData(img3);
+	size80_bilat.calcData(img3);
 	
-	std_msgs::Float32 variance_msg;
-	variance_msg.data = variance;
-	std_msgs::Float32 mean_msg;
-	mean_msg.data = mean;
-	variance_pub.publish(variance_msg);
-	mean_pub.publish(mean_msg);*/
 
-// // 	  printf("img %d\n",bridge->image.data[i])int DELAY_CAPTION = 1500;
+	
 
-// 	  
-// 	for(MatIterator_<cv::Mat> = bridge->image.begin();;)
-// 	for(bridge->image.begin()bridge->image.begin()
-// 	for(int& pixel : bridge->image)
-// 	  pixel *= 4;
-// roslaunch openni2_launch openni2.launch rgb_camera_info_url:="~/camera.yaml"
-// rosrun  camera_calibration_parsers convert  /home/anders/ost.ini camera.yaml
-	
-// 	cv_bridge::CvImageConstPtr  img2;
-// 	cv::Mat saving_image = cv::Mat::zeros(bridge->image.height*bridge->image.width);
-// 	cvtColor( img2, bridge->image, CV_BGR2GRAY );
-// 	cv::Mat saving_image;//  = bridge->image*4.0;
-// 	bridge->image.convertTo(saving_image, CV_32S, 256.0);
-	
-	
-// 	saving_image = saving_image * pow(2.0,24.0);
-	
-// 	for( int i = 0; i < 640*480; i++)
-// 	  bridge->image.data[i] = bridge->image.data[i] << 24;
-	 
-// 	cv::imwrite( "/home/anders/images/depth2.png", saving_image);
-// 	cv::imshow(DEPTH_WINDOW, window);
-	
-	
-	
-// 	bridge->image.convertTo(bridge->image, CV_32FC1, 255.0/0xffff);
-	
-	cv::waitKey(1);
+// 	cv::waitKey(1);
     }
 
 };
@@ -449,27 +644,27 @@ class AsusNode {
 //      return 0;
 //  }
 
- int display_caption( char* caption )
- {
-   dst = cv::Mat::zeros( src.size(), src.type() );
-   cv::putText( dst, caption,
-            cv::Point( src.cols/4, src.rows/2),
-            CV_FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255, 255, 255) );
-
-   cv::imshow( window_name, dst );
-//    int c = cv::waitKey( DELAY_CAPTION );
-//    if( c >= 0 ) { return -1; }
-   return 0;
-  }
-
-  int display_dst( int delay )
-  {
-    cv::imshow( window_name, dst );
-    int c = cv::waitKey ( delay );
-    return 0;
-//     if( c >= 0 ) { return -1; }
+//  int display_caption( char* caption )
+//  {
+//    dst = cv::Mat::zeros( src.size(), src.type() );
+//    cv::putText( dst, caption,
+//             cv::Point( src.cols/4, src.rows/2),
+//             CV_FONT_HERSHEY_COMPLEX, 1, cv::Scalar(255, 255, 255) );
+// 
+//    cv::imshow( window_name, dst );
+// //    int c = cv::waitKey( DELAY_CAPTION );
+// //    if( c >= 0 ) { return -1; }
+//    return 0;
+//   }
+// 
+//   int display_dst( int delay )
+//   {
+//     cv::imshow( window_name, dst );
+//     int c = cv::waitKey ( delay );
 //     return 0;
-  }
+// //     if( c >= 0 ) { return -1; }
+// //     return 0;
+//   }
 
 
 //main function
@@ -480,9 +675,9 @@ int main(int argc, char **argv) {
     AsusNode nd;
     std::cerr<<"node done\n";
     
-    int i = 1;
-    ros::Rate loop_rate(10);
-    while (ros::ok()) {
+//     int i = 1;
+//     ros::Rate loop_rate(30);
+/*    while (ros::ok()) {
 
 //       int c = cv::waitKey ( 10 );
 //       if( c == 'd' ) 
@@ -496,9 +691,9 @@ int main(int argc, char **argv) {
       
       ros::spinOnce();
       loop_rate.sleep();
-    }				
+    }	*/			
     
-//     ros::spin();
+    ros::spin();
 
     return 0;
 }
