@@ -42,6 +42,7 @@
 #include <sstream>
 #include <string>
 #include <ros/ros.h>
+#include <std_srvs/Trigger.h>
 #include <std_msgs/Float32.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include "sensor_msgs/PointCloud2.h"
@@ -62,9 +63,9 @@
 #define DEPTH_WINDOW "Depth Image"
 
 #define SPICE 0
-#define SHOW_IMG 1
-#define SAVE_IMG 1
-
+#define SHOW_IMG 0
+// #define SAVE_IMG 1
+#include <std_srvs/Empty.h>
 
 int DELAY_CAPTION = 1500;
 int DELAY_BLUR = 100;
@@ -252,7 +253,10 @@ class AsusNode {
     ros::Subscriber points_sub_;
     ros::Subscriber depth_sub_;
     ros::Subscriber rgb_sub_;
-
+    
+    ros::ServiceServer save_imgs;
+//     ros::ServiceServer save_imgs;
+//     ros::ServiceServer<std_srvs::Trigger::Request, std_srvs::Trigger::Response> save_imgs;
     //topics to subscribe to
     std::string subscribe_topic_point;
     std::string subscribe_topic_depth;
@@ -284,16 +288,32 @@ class AsusNode {
     windowDataPublisher size80_median;
     
     CircularList movingMean;
+    bool save_imgOn;
+//     std::string imgPrefix;
 //     CircularList movingMean_60;
 //     CircularList movingMean_80;
     
+  bool save_img(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res)
+  {
+    save_imgOn = true;
+  }
+
 
 
     public:
-    AsusNode() {
+    AsusNode() : save_imgOn(false) {
 
 	nh_ = ros::NodeHandle("~");
 	n_ = ros::NodeHandle();
+	
+	
+// 	ros::ServiceServer("save_img", &AsusNode::save_img, n_);
+// 	save_imgs = n_.advertiseService( "save_img", &AsusNode::save_img, this);
+// 	save_imgs( "save_img", &AsusNode::save_img, this)
+// 	n_.advertiseService(save_imgs);
+	
+	
+	save_imgs = n_.advertiseService("save_img", &AsusNode::save_img,this);
 	
 	size40_org = windowDataPublisher(n_,40,"org_40");
 	size60_org = windowDataPublisher(n_,60,"org_60");
@@ -318,6 +338,9 @@ class AsusNode {
 	size40_median = windowDataPublisher(n_,40,"median_40");
 	size60_median = windowDataPublisher(n_,60,"median_60");
 	size80_median = windowDataPublisher(n_,80,"median_80");
+	
+	
+	
 	
 	//read in topic names from the parameter server
 	nh_.param<std::string>("points_topic",subscribe_topic_point,"/camera/depth_registered/points");
@@ -344,16 +367,16 @@ class AsusNode {
 #if SHOW_IMG
       cv::imshow( name, img/7.0f );
 #endif
-#if SAVE_IMG
+      if(save_imgOn)
+      {
       
 #if SPICE
-      name += "_spice";
+	name += "_spice";
 #endif
-      (img.clone()).convertTo(img, CV_32S, 256.0/7.0);
-      cv::imwrite( "/home/anders/images/depth_"+ name +".png", img);
-#endif
+	(img.clone()).convertTo(img, CV_32S, 256.0/7.0);
+	cv::imwrite( "/home/anders/images/depth_"+ name +".png", img);
+      }
     }
-
 
     // Callback for pointclouds
     void points2Callback(const sensor_msgs::PointCloud2::ConstPtr& msg_in)
@@ -385,6 +408,7 @@ class AsusNode {
 	
 
 	/* do something colorful"*/
+
 	cv::imwrite( "/home/anders/images/rgb.bmp", bridge->image);
 
 	
@@ -578,8 +602,10 @@ class AsusNode {
 	
 
 // 	cv::waitKey(1);
+	save_imgOn = false;
     }
 
+    
 };
 
 
