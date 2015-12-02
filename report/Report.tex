@@ -66,15 +66,14 @@ After the basic setup, a ROS node template was used as a base to process the ima
   \label{fig:depth-save}
 \end{figure}
 
-\subsection{Color Camera Calibration}
-\label{sec:color_camera_calibration}
-%TODO!
+\subsection{Color camera calibration}
+\label{sec:calibration}
 
-\subsection{Noise Characterization}
-\label{sec:noize_characterization}
+\subsection{Noise characterization}
+\label{sec:noise_characterization}
 
-\subsection{Noise Filtering}
-\label{sec:noise_filtering}
+\subsection{Noise filtering}
+\label{sec:filtering}
 In this part we applied several filters to the depth images in order to remove the noise from the measurement data. These filters are:
 \begin{itemize}
 \item Gaussian blur
@@ -85,9 +84,111 @@ In this part we applied several filters to the depth images in order to remove t
 \end{itemize}
 The effect on the image data after the application of the filters will be discussed in the following.
 
-\subsubsection{NaN values}
-\label{sec:nan_statement}
-If objects in the scene are closer than the minimum range of the camera allows 
+% \subsubsection{NaN values}
+% \label{sec:nan}
+% Whenever the sensor can't evaluate the IR data, the according pixel in the depth image receives a \texttt{NaN} value as the depth value. This can be caused by an object standing too close to the sensor or by IR rays not reaching the sensor due to shadow casting, obstructing objects or scattering. Leaving these \texttt{NaN} values in the image data for processing would negatively influence the filters and thus should to be replaced.\par
+% Two ways of replacing the \texttt{NaN} values were considered: 
+% \begin{itemize}
+% \item Replacing the \texttt{NaN} values with a depth-value of 0.
+% \item Replacing the \texttt{NaN} values with the last valid pixel scanned.
+% \end{itemize}
+% We chose the first method, since the replaced pixels are still identifiable as invalid. Thus, less information is lost.
+
+\subsubsection{Filter effects}
+\label{sec:filter_effects}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_Original.png}
+  \caption{Original depth image}
+  \label{fig:original_depth}
+\end{figure}
+
+\paragraph{Gaussian blur}
+The image with the Gaussian blur applied is shown in figure \ref{fig:gaussian_blur}.
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_GaussianBlur.png}
+  \caption{Gaussian blur}
+  \label{fig:gaussian_blur}
+\end{figure}
+\paragraph{Median filtering}
+The image with the median filter applied is shown in figure \ref{fig:median_blur}.
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_medianBlur.png}
+  \caption{Median filtering}
+  \label{fig:median_depth}
+\end{figure}
+\paragraph{Bilateral filtering}
+The image with the bilateral filter applied is shown in figure \ref{fig:bilateral_depth}.
+%TODO: NaN
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_bilateral.png}
+  \caption{Bilateral filtering}
+  \label{fig:bilateral_depth}
+\end{figure}
+\paragraph{Median over several image samples}
+The median image of 10 samples is shown in figure \ref{fig:moving_median_depth}.
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_MovingMedianFilter.png}
+  \caption{Moving median image}
+  \label{fig:moving_median_depth}
+\end{figure}
+\paragraph{Average over several image samples}
+The mean image of 10 samples is shown in figure \ref{fig:moving_mean_depth}.
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_MovingMeanFilter.png}
+  \caption{Moving mean image}
+  \label{fig:moving_mean_depth}
+\end{figure}
+\subsubsection{Salt-and-pepper removal properties}
+\label{sec:grain_removal}
+The depth images didn't suffer from noise visible to the eye. In order to test the noise cancelling properties of the filters, artificial salt-and-pepper noise was added to the image file. This was achieved by changing random pixels in the image to black or white in each received depth-image. %TODO:Listing?
+\par
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_Original_spice.png}
+  \caption{Original depth image with salt and pepper}
+  \label{fig:original_depth_spice}
+\end{figure}
+\paragraph{Gaussian blur}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_GaussianBlur_spice.png}
+  \caption{Gaussian blur with salt and pepper}
+  \label{fig:gaussian_blur}
+\end{figure}
+\paragraph{Median filtering}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_medianBlur_spice.png}
+  \caption{Median filtering with salt and pepper}
+  \label{fig:median_depth_spice}
+\end{figure}
+\paragraph{Bilateral filtering}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_bilateral_spice.png}
+  \caption{Bilateral filtering with salt and pepper}
+  \label{fig:bilateral_depth_spice}
+\end{figure}
+\paragraph{Median over several image samples}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_MovingMedianFilter_spice.png}
+  \caption{Moving median image with salt and pepper}
+  \label{fig:moving_median_depth_spice}
+\end{figure}
+\paragraph{Average over several image samples}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\defaultwidth]{depth_MovingMeanFilter_spice.png}
+  \caption{Moving mean image with salt and pepper}
+  \label{fig:moving_mean_depth_spice}
+\end{figure}
 
 
 \end{document}

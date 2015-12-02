@@ -86,7 +86,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS
 #  LIBRARIES asus_node
-  CATKIN_DEPENDS sensor_msgs roscpp pcl_ros cv_bridge
+  CATKIN_DEPENDS sensor_msgs roscpp pcl_ros cv_bridge std_srv
   DEPENDS eigen libpc-devel-all opencv2 
 )
 
