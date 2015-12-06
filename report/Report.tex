@@ -24,7 +24,7 @@ For this laboration, only the topics which publish a viewable image were of inte
   \item \texttt{/camera/depth/}\\
     This topic publishes the depth data as a 2D-array of float variables containing the depth values in meters. A sample image from this topic is shown in figure \ref{fig:depth}.
   \item \texttt{/camera/depth\_registered}\\
-    This topic combines the RGB and the depth image into a coloured point cloud. A visualization of this topic through the tool \texttt{rviz} is shown in figure 
+    This topic combines the RGB and the depth image into a coloured point cloud. A visualization of this topic through the tool \texttt{rviz} is shown in figure %TODO
 \end{itemize}
 
 \begin{figure}
@@ -71,6 +71,27 @@ After the basic setup, a ROS node template was used as a base to process the ima
 
 \subsection{Noise characterization}
 \label{sec:noise_characterization}
+%Modify your ROS node to observe a small window of depth image pixels around the center of the image.  Compute average and standard deviation distances for measurements within the window
+In this part we cropped small windows of varying sizes in the center of the depth image. Then the camera was placed in several known distances from a wall and the average and standard deviation of the depth values in the cropped images were recorded.\par
+The mean error of 10 seconds of measurement in relation to the distance is shown in figure \ref{fig:mean_error}. The variances are shown in figure \ref{fig:variance}.\par
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[height=0.8\textwidth,angle=270]{figures/distance_values.eps}
+  \caption{Mean error of the mean depth in relation to the distance}
+  \label{fig:mean_error}
+\end{figure}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[height=0.8\textwidth,angle=270]{figures/variances.eps}
+  \caption{Mean of the Variance of the depth in relation to the ground truth distance}
+  \label{fig:variance}
+\end{figure}
+
+
+%Place your camera on a stable moveable platform.  Make sure the camera is at least 0.5m above the floor and that it points parallel to the floor.  Place your setup in front of a flat wall.  Using your node, record mean and variance of range readings at suitably chosen distances from the wall.  Use a measuring tape to record ground truth range. Record the input depth images using rosbag.  Record at least 10 seconds of data for each position.
+
+%Generate graphs of your distance errors and range variance.  What can you say about the errors?  Does the window size affect your results?
+
 
 \subsection{Noise filtering}
 \label{sec:filtering}
