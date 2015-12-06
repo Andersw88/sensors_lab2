@@ -3,14 +3,20 @@ import rosbag
 import csv
 import pprint
 import numpy as np
+import itertools
 from os.path import join
-
 import rospkg
+from _csv import Dialect
 rospack = rospkg.RosPack()
-# rospack.list_pkgs() 
 path = rospack.get_path('sensors_lab2_bag_to_csv')
-# print path
 
+filters = ["bilat","gauss","mean10","mean","median","org"]
+window_sizes = ["40","60","80"]
+variables = ["mean","variance","error", "absError"]
+
+# topics = [ filer + "_" + window + "_" variable for filter]
+variables_combi = list(itertools.product(*[variables, filters,window_sizes]))
+variables_names = ["#Truth"] + [filter + "_" + window + "_" + variable for variable,filter,window in variables_combi]
 
 topics = ["bilat_40/mean", "bilat_40/variance", 
           "bilat_60/mean", "bilat_60/variance",
@@ -31,12 +37,8 @@ topics = ["bilat_40/mean", "bilat_40/variance",
           "org_60/mean", "org_60/variance", 
           "org_80/mean", "org_80/variance"]
 distances = [0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0]
-# distances = [0.8,1.0,1.2,1.4,1.6,1.8,2.0]
 
-pp = pprint.PrettyPrinter(indent=4)
-
-
-topicsPlusTruth = ["Truth"] + topics;
+# pp = pprint.PrettyPrinter(indent=4)
 
 dataList = list()
 
@@ -44,17 +46,20 @@ for dist in distances:
     bag = rosbag.Bag(join(path ,'bagfiles/%sm-f.bag'%dist))
     data = [[x.data for topic2,x,t in bag.read_messages(topics='/depth/%s' % topic)] for topic in topics];
 #     pp.pprint(data)
-    means = [[np.mean(datapoint)] for datapoint in data] 
-#     pp.pprint(means)
-    
-    dataList.append(dict(zip(topicsPlusTruth,[dist] + [item for sublist in means for item in sublist])))
-#     dataDict.append([item for sublist in means for item in sublist])
+    data2 = [np.mean(datapoint) for datapoint in data]
+    means = data2[::2]
+    variances = data2[1::2]
+    errors = [x - dist for x in means]
+    absErrors = errors = [abs(x) for x in errors]
+
+    dataList.append(dict(zip(variables_names,[dist] + means + variances + errors + absErrors)))
+
     bag.close()
 
 # pp.pprint( dataList)
 
-with open(join(path ,'data.csv'), 'w') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=topicsPlusTruth)
+with open(join(path ,'data.csv',), 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=variables_names)
     writer.writeheader()
     writer.writerows(dataList)
 
