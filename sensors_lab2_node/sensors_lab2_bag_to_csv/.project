@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>sensors_lab2_bag_to_csv</name>
+	<comment></comment>
+	<projects>
+		<project>build</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.python.pydev.pythonNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src</name>
+			<type>2</type>
+			<location>/home/anders/catkin_ws/src/sensors_lab2/sensors_lab2_bag_to_csv/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>
