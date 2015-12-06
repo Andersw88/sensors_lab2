@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.19)  6 DEC 2015 16:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.19)  6 DEC 2015 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -365,26 +365,30 @@ File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
 Package: listings 2013/08/26 1.5b (Carsten Heinz)
-) (./Report.aux
-
-LaTeX Warning: Label `fig:gaussian_blur' multiply defined.
-
 )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+) (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count97
 \scratchdimen=\dimen109
@@ -447,34 +451,34 @@ e
 ))
 \c@lstlisting=\count103
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 11.
+(Font)              <14.4> on input line 12.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 11.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
+(Font)              <7> on input line 12.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
 
 <figures/TODO.png, id=1, 1337.99875pt x 1002.74625pt>
 File: figures/TODO.png Graphic file (type png)
  <use figures/TODO.png>
-Package pdftex.def Info: figures/TODO.png used on input line 32.
+Package pdftex.def Info: figures/TODO.png used on input line 33.
 (pdftex.def)             Requested size: 358.50612pt x 268.67952pt.
 File: figures/TODO.png Graphic file (type png)
 
 <use figures/TODO.png>
-Package pdftex.def Info: figures/TODO.png used on input line 39.
+Package pdftex.def Info: figures/TODO.png used on input line 40.
 (pdftex.def)             Requested size: 358.50612pt x 268.67952pt.
 File: figures/TODO.png Graphic file (type png)
  <use figures/TODO.png>
-Package pdftex.def Info: figures/TODO.png used on input line 46.
+Package pdftex.def Info: figures/TODO.png used on input line 47.
 (pdftex.def)             Requested size: 358.50612pt x 268.67952pt.
 File: figures/TODO.png Graphic file (type png)
  <use figures/TODO.png>
-Package pdftex.def Info: figures/TODO.png used on input line 57.
+Package pdftex.def Info: figures/TODO.png used on input line 58.
 (pdftex.def)             Requested size: 358.50612pt x 268.67952pt.
  [1
 
@@ -487,32 +491,27 @@ Package pdftex.def Info: figures/TODO.png used on input line 57.
 File: figures/TODO.png Graphic file (type png)
 
 <use figures/TODO.png>
-Package pdftex.def Info: figures/TODO.png used on input line 64.
+Package pdftex.def Info: figures/TODO.png used on input line 65.
 (pdftex.def)             Requested size: 358.50612pt x 268.67952pt.
+ [3] [4]
 Package epstopdf Info: Source file: <figures/distance_values.eps>
 (epstopdf)                    date: 2015-12-06 16:19:18
 (epstopdf)                    size: 18220 bytes
 (epstopdf)             Output file: <figures/distance_values-eps-converted-to.p
 df>
-(epstopdf)                    date: 2015-12-06 11:11:41
-(epstopdf)                    size: 5033 bytes
+(epstopdf)                    date: 2015-12-06 16:24:18
+(epstopdf)                    size: 5064 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/distance_values-ep
 s-converted-to.pdf figures/distance_values.eps>
-(epstopdf)             \includegraphics on input line 79.
-runsystem(repstopdf --outfile=figures/distance_values-eps-converted-to.pdf figu
-res/distance_values.eps)...executed safely (allowed).
+(epstopdf)             \includegraphics on input line 81.
+Package epstopdf Info: Output file is already uptodate.
 
-Package epstopdf Info: Result file: <figures/distance_values-eps-converted-to.p
-df>
-(epstopdf)                    date: 2015-12-06 16:24:18
-(epstopdf)                    size: 5064 bytes.
-
-<figures/distance_values-eps-converted-to.pdf, id=17, 505.89pt x 722.7pt>
+<figures/distance_values-eps-converted-to.pdf, id=23, 505.89pt x 722.7pt>
 File: figures/distance_values-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/distance_values-eps-converted-to.pdf>
 Package pdftex.def Info: figures/distance_values-eps-converted-to.pdf used on i
-nput line 79.
+nput line 81.
 (pdftex.def)             Requested size: 250.9528pt x 358.50612pt.
 Package epstopdf Info: Source file: <figures/variances.eps>
 (epstopdf)                    date: 2015-12-06 10:36:58
@@ -522,54 +521,78 @@ Package epstopdf Info: Source file: <figures/variances.eps>
 (epstopdf)                    size: 5206 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/variances-eps-conv
 erted-to.pdf figures/variances.eps>
-(epstopdf)             \includegraphics on input line 85.
+(epstopdf)             \includegraphics on input line 87.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/variances-eps-converted-to.pdf, id=18, 505.89pt x 722.7pt>
+<figures/variances-eps-converted-to.pdf, id=24, 505.89pt x 722.7pt>
 File: figures/variances-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/variances-eps-converted-to.pdf>
 Package pdftex.def Info: figures/variances-eps-converted-to.pdf used on input l
-ine 85.
+ine 87.
 (pdftex.def)             Requested size: 250.9528pt x 358.50612pt.
- [3] [4] [5 <./figures/distance_values-eps-converted-to.pdf> <./figures/varianc
-es-eps-converted-to.pdf>]
-<figures/depth_Original.png, id=38, 642.4pt x 481.8pt>
+Package epstopdf Info: Source file: <figures/geometric_example.eps>
+(epstopdf)                    date: 2015-12-06 19:06:32
+(epstopdf)                    size: 18473 bytes
+(epstopdf)             Output file: <figures/geometric_example-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2015-12-06 19:06:48
+(epstopdf)                    size: 8250 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/geometric_example-
+eps-converted-to.pdf figures/geometric_example.eps>
+(epstopdf)             \includegraphics on input line 95.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/geometric_example-eps-converted-to.pdf, id=25, 138.5175pt x 64.24pt>
+File: figures/geometric_example-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/geometric_example-eps-converted-to.pdf>
+Package pdftex.def Info: figures/geometric_example-eps-converted-to.pdf used on
+ input line 95.
+(pdftex.def)             Requested size: 179.24963pt x 83.13068pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 99.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 99.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 99.
+ [5 <./figures/distance_values-eps-converted-to.pdf>]
+<figures/depth_Original.png, id=35, 642.4pt x 481.8pt>
 File: figures/depth_Original.png Graphic file (type png)
 
 <use figures/depth_Original.png>
-Package pdftex.def Info: figures/depth_Original.png used on input line 122.
+Package pdftex.def Info: figures/depth_Original.png used on input line 129.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_GaussianBlur.png, id=39, 642.4pt x 481.8pt>
+<figures/depth_GaussianBlur.png, id=36, 642.4pt x 481.8pt>
 File: figures/depth_GaussianBlur.png Graphic file (type png)
 
 <use figures/depth_GaussianBlur.png>
-Package pdftex.def Info: figures/depth_GaussianBlur.png used on input line 130.
+Package pdftex.def Info: figures/depth_GaussianBlur.png used on input line 138.
 
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
-
-<figures/depth_medianBlur.png, id=40, 642.4pt x 481.8pt>
+ [6 <./figures/variances-eps-converted-to.pdf> <./figures/geometric_example-eps
+-converted-to.pdf>]
+<figures/depth_medianBlur.png, id=47, 642.4pt x 481.8pt>
 File: figures/depth_medianBlur.png Graphic file (type png)
 
 <use figures/depth_medianBlur.png>
-Package pdftex.def Info: figures/depth_medianBlur.png used on input line 137.
+Package pdftex.def Info: figures/depth_medianBlur.png used on input line 147.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_bilateral.png, id=41, 642.4pt x 481.8pt>
+<figures/depth_bilateral.png, id=48, 642.4pt x 481.8pt>
 File: figures/depth_bilateral.png Graphic file (type png)
 
 <use figures/depth_bilateral.png>
-Package pdftex.def Info: figures/depth_bilateral.png used on input line 144.
+Package pdftex.def Info: figures/depth_bilateral.png used on input line 157.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
- [6 <./figures/depth_Original.png (PNG copy)>] [7 <./figures/depth_GaussianBlur
-.png (PNG copy)> <./figures/depth_medianBlur.png (PNG copy)>]
+
 <figures/depth_MovingMedianFilter.png, id=49, 642.4pt x 481.8pt>
 File: figures/depth_MovingMedianFilter.png Graphic file (type png)
 
 <use figures/depth_MovingMedianFilter.png>
 Package pdftex.def Info: figures/depth_MovingMedianFilter.png used on input lin
-e 151.
+e 165.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
 <figures/depth_MovingMeanFilter.png, id=50, 642.4pt x 481.8pt>
@@ -577,84 +600,84 @@ File: figures/depth_MovingMeanFilter.png Graphic file (type png)
 
 <use figures/depth_MovingMeanFilter.png>
 Package pdftex.def Info: figures/depth_MovingMeanFilter.png used on input line 
-158.
+173.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
-
-<figures/depth_Original_spice.png, id=51, 642.4pt x 481.8pt>
+ [7 <./figures/depth_Original.png (PNG copy)>] [8 <./figures/depth_GaussianBlur
+.png (PNG copy)> <./figures/depth_medianBlur.png (PNG copy)>] [9 <./figures/dep
+th_bilateral.png (PNG copy)> <./figures/depth_MovingMedianFilter.png (PNG copy)
+>]
+<figures/depth_Original_spice.png, id=61, 642.4pt x 481.8pt>
 File: figures/depth_Original_spice.png Graphic file (type png)
 
 <use figures/depth_Original_spice.png>
-Package pdftex.def Info: figures/depth_Original_spice.png used on input line 16
-8.
+Package pdftex.def Info: figures/depth_Original_spice.png used on input line 18
+3.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_GaussianBlur_spice.png, id=52, 642.4pt x 481.8pt>
+<figures/depth_GaussianBlur_spice.png, id=62, 642.4pt x 481.8pt>
 File: figures/depth_GaussianBlur_spice.png Graphic file (type png)
 
 <use figures/depth_GaussianBlur_spice.png>
 Package pdftex.def Info: figures/depth_GaussianBlur_spice.png used on input lin
-e 175.
+e 191.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_medianBlur_spice.png, id=53, 642.4pt x 481.8pt>
+<figures/depth_medianBlur_spice.png, id=63, 642.4pt x 481.8pt>
 File: figures/depth_medianBlur_spice.png Graphic file (type png)
 
 <use figures/depth_medianBlur_spice.png>
 Package pdftex.def Info: figures/depth_medianBlur_spice.png used on input line 
-182.
+199.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_bilateral_spice.png, id=54, 642.4pt x 481.8pt>
+<figures/depth_bilateral_spice.png, id=64, 642.4pt x 481.8pt>
 File: figures/depth_bilateral_spice.png Graphic file (type png)
 
 <use figures/depth_bilateral_spice.png>
-Package pdftex.def Info: figures/depth_bilateral_spice.png used on input line 1
-89.
+Package pdftex.def Info: figures/depth_bilateral_spice.png used on input line 2
+07.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_MovingMedianFilter_spice.png, id=55, 642.4pt x 481.8pt>
+<figures/depth_MovingMedianFilter_spice.png, id=65, 642.4pt x 481.8pt>
 File: figures/depth_MovingMedianFilter_spice.png Graphic file (type png)
 
 <use figures/depth_MovingMedianFilter_spice.png>
 Package pdftex.def Info: figures/depth_MovingMedianFilter_spice.png used on inp
-ut line 196.
+ut line 215.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
-<figures/depth_MovingMeanFilter_spice.png, id=56, 642.4pt x 481.8pt>
+<figures/depth_MovingMeanFilter_spice.png, id=66, 642.4pt x 481.8pt>
 File: figures/depth_MovingMeanFilter_spice.png Graphic file (type png)
 
 <use figures/depth_MovingMeanFilter_spice.png>
 Package pdftex.def Info: figures/depth_MovingMeanFilter_spice.png used on input
- line 203.
+ line 223.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
- [8 <./figures/depth_bilateral.png (PNG copy)>] [9 <./figures/depth_MovingMedia
-nFilter.png (PNG copy)> <./figures/depth_MovingMeanFilter.png (PNG copy)>] [10 
-<./figures/depth_Original_spice.png (PNG copy)> <./figures/depth_GaussianBlur_s
-pice.png (PNG copy)>] [11 <./figures/depth_medianBlur_spice.png (PNG copy)> <./
-figures/depth_bilateral_spice.png (PNG copy)>] [12 <./figures/depth_MovingMedia
-nFilter_spice.png (PNG copy)> <./figures/depth_MovingMeanFilter_spice.png (PNG 
-copy)>] (./Report.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ [10 <./figures/depth_MovingMeanFilter.png (PNG copy)>] [11 <./figures/depth_Or
+iginal_spice.png (PNG copy)> <./figures/depth_GaussianBlur_spice.png (PNG copy)
+>] [12 <./figures/depth_medianBlur_spice.png (PNG copy)> <./figures/depth_bilat
+eral_spice.png (PNG copy)>]
+[13 <./figures/depth_MovingMedianFilter_spice.png (PNG copy)> <./figures/depth_
+MovingMeanFilter_spice.png (PNG copy)>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 4393 strings out of 494953
- 67237 string characters out of 6178088
- 167385 words of memory out of 5000000
- 7575 multiletter control sequences out of 15000+600000
- 7053 words of font info for 26 fonts, out of 8000000 for 9000
+ 4466 strings out of 494953
+ 68512 string characters out of 6178088
+ 168204 words of memory out of 5000000
+ 7637 multiletter control sequences out of 15000+600000
+ 9235 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 47i,7n,51p,478b,236s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (12 pages, 1672750 bytes).
+ 47i,8n,51p,475b,244s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb>
+Output written on Report.pdf (13 pages, 1690061 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
