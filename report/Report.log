@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.19)  7 DEC 2015 22:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.19)  7 DEC 2015 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -388,6 +388,10 @@ Package caption Info: listings package is loaded.
 Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 \c@subfigure=\count98
 \c@subtable=\count99
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -526,20 +530,26 @@ Package pdftex.def Info: figures/pointcloud.png used on input line 53.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./figures/rgb_raw.png 
-(PNG copy)> <./figures/depth_Original.png (PNG copy)>] <figures/checkers-uncali
-brated.png, id=17, 687.31781pt x 517.935pt>
+(PNG copy)> <./figures/depth_Original.png (PNG copy)>]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 63.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 63.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 63.
+ <figures/checkers-uncalibrated.png, id=17, 687.31781pt x 517.935pt>
 File: figures/checkers-uncalibrated.png Graphic file (type png)
 
 <use figures/checkers-uncalibrated.png>
-Package pdftex.def Info: figures/checkers-uncalibrated.png used on input line 6
-9.
+Package pdftex.def Info: figures/checkers-uncalibrated.png used on input line 7
+1.
 (pdftex.def)             Requested size: 358.50612pt x 270.14966pt.
 
 <figures/checkers-calibrated.png, id=19, 914.41624pt x 690.58pt>
 File: figures/checkers-calibrated.png Graphic file (type png)
 
 <use figures/checkers-calibrated.png>
-Package pdftex.def Info: figures/checkers-calibrated.png used on input line 75.
+Package pdftex.def Info: figures/checkers-calibrated.png used on input line 77.
 
 (pdftex.def)             Requested size: 358.50612pt x 270.74767pt.
  [3 <./figures/pointcloud.png>] [4 <./figures/checkers-uncalibrated.png> <./fig
@@ -553,7 +563,7 @@ f>
 (epstopdf)                    size: 5139 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_org_error-eps
 -converted-to.pdf figures/mean_org_error.eps>
-(epstopdf)             \includegraphics on input line 90.
+(epstopdf)             \includegraphics on input line 92.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_org_error-eps-converted-to.pdf, id=28, 505.89pt x 722.7pt>
@@ -561,7 +571,7 @@ File: figures/mean_org_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_org_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_org_error-eps-converted-to.pdf used on in
-put line 90.
+put line 92.
 (pdftex.def)             Requested size: 250.9528pt x 358.50612pt.
 Package epstopdf Info: Source file: <figures/mean_org_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -572,7 +582,7 @@ Package epstopdf Info: Source file: <figures/mean_org_variance.eps>
 (epstopdf)                    size: 5225 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_org_variance-
 eps-converted-to.pdf figures/mean_org_variance.eps>
-(epstopdf)             \includegraphics on input line 96.
+(epstopdf)             \includegraphics on input line 98.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_org_variance-eps-converted-to.pdf, id=29, 505.89pt x 722.7pt>
@@ -580,14 +590,8 @@ File: figures/mean_org_variance-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_org_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_org_variance-eps-converted-to.pdf used on
- input line 96.
+ input line 98.
 (pdftex.def)             Requested size: 250.9528pt x 358.50612pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 100.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 100.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 100.
 Package epstopdf Info: Source file: <figures/geometric_example.eps>
 (epstopdf)                    date: 2015-12-06 19:06:32
 (epstopdf)                    size: 18473 bytes
@@ -597,7 +601,7 @@ Package epstopdf Info: Source file: <figures/geometric_example.eps>
 (epstopdf)                    size: 8250 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/geometric_example-
 eps-converted-to.pdf figures/geometric_example.eps>
-(epstopdf)             \includegraphics on input line 108.
+(epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/geometric_example-eps-converted-to.pdf, id=30, 138.5175pt x 64.24pt>
@@ -605,7 +609,7 @@ File: figures/geometric_example-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/geometric_example-eps-converted-to.pdf>
 Package pdftex.def Info: figures/geometric_example-eps-converted-to.pdf used on
- input line 108.
+ input line 110.
 (pdftex.def)             Requested size: 179.24963pt x 83.13068pt.
  [5 <./figures/mean_org_error-eps-converted-to.pdf>] [6 <./figures/mean_org_var
 iance-eps-converted-to.pdf> <./figures/geometric_example-eps-converted-to.pdf>]
@@ -614,7 +618,7 @@ iance-eps-converted-to.pdf> <./figures/geometric_example-eps-converted-to.pdf>]
 File: figures/depth_GaussianBlur.png Graphic file (type png)
 
 <use figures/depth_GaussianBlur.png>
-Package pdftex.def Info: figures/depth_GaussianBlur.png used on input line 149.
+Package pdftex.def Info: figures/depth_GaussianBlur.png used on input line 151.
 
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
 
@@ -622,22 +626,22 @@ Package pdftex.def Info: figures/depth_GaussianBlur.png used on input line 149.
 File: figures/depth_medianBlur.png Graphic file (type png)
 
 <use figures/depth_medianBlur.png>
-Package pdftex.def Info: figures/depth_medianBlur.png used on input line 155.
+Package pdftex.def Info: figures/depth_medianBlur.png used on input line 157.
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
 File: figures/depth_medianBlur.png Graphic file (type png)
  <use figures/depth_medianBlur.png>
-Package pdftex.def Info: figures/depth_medianBlur.png used on input line 166.
+Package pdftex.def Info: figures/depth_medianBlur.png used on input line 168.
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
 
 <figures/depth_bilateral.png, id=52, 642.4pt x 481.8pt>
 File: figures/depth_bilateral.png Graphic file (type png)
 
 <use figures/depth_bilateral.png>
-Package pdftex.def Info: figures/depth_bilateral.png used on input line 172.
+Package pdftex.def Info: figures/depth_bilateral.png used on input line 174.
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
 File: figures/depth_bilateral.png Graphic file (type png)
  <use figures/depth_bilateral.png>
-Package pdftex.def Info: figures/depth_bilateral.png used on input line 184.
+Package pdftex.def Info: figures/depth_bilateral.png used on input line 186.
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
 
 <figures/depth_MovingMedianFilter.png, id=53, 642.4pt x 481.8pt>
@@ -645,7 +649,7 @@ File: figures/depth_MovingMedianFilter.png Graphic file (type png)
 
 <use figures/depth_MovingMedianFilter.png>
 Package pdftex.def Info: figures/depth_MovingMedianFilter.png used on input lin
-e 190.
+e 192.
 (pdftex.def)             Requested size: 201.65755pt x 151.23848pt.
  [7 <./figures/depth_GaussianBlur.png (PNG copy)> <./figures/depth_medianBlur.p
 ng (PNG copy)>]
@@ -654,7 +658,7 @@ File: figures/depth_MovingMeanFilter.png Graphic file (type png)
 
 <use figures/depth_MovingMeanFilter.png>
 Package pdftex.def Info: figures/depth_MovingMeanFilter.png used on input line 
-201.
+203.
 (pdftex.def)             Requested size: 224.06548pt x 168.04439pt.
  [8 <./figures/depth_bilateral.png (PNG copy)> <./figures/depth_MovingMedianFil
 ter.png (PNG copy)>]
@@ -667,7 +671,7 @@ pdf>
 (epstopdf)                    size: 5142 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_gauss_error-e
 ps-converted-to.pdf figures/mean_gauss_error.eps>
-(epstopdf)             \includegraphics on input line 226.
+(epstopdf)             \includegraphics on input line 228.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_gauss_error-eps-converted-to.pdf, id=62, 505.89pt x 722.7pt>
@@ -675,7 +679,7 @@ File: figures/mean_gauss_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_gauss_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_gauss_error-eps-converted-to.pdf used on 
-input line 226.
+input line 228.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_gauss_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -686,7 +690,7 @@ to.pdf>
 (epstopdf)                    size: 5135 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_gauss_varianc
 e-eps-converted-to.pdf figures/mean_gauss_variance.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 233.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_gauss_variance-eps-converted-to.pdf, id=63, 505.89pt x 722.7pt>
@@ -694,7 +698,7 @@ File: figures/mean_gauss_variance-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_gauss_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_gauss_variance-eps-converted-to.pdf used 
-on input line 231.
+on input line 233.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_median_error.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -705,7 +709,7 @@ Package epstopdf Info: Source file: <figures/mean_median_error.eps>
 (epstopdf)                    size: 5145 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_median_error-
 eps-converted-to.pdf figures/mean_median_error.eps>
-(epstopdf)             \includegraphics on input line 242.
+(epstopdf)             \includegraphics on input line 244.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_median_error-eps-converted-to.pdf, id=64, 505.89pt x 722.7pt>
@@ -713,7 +717,7 @@ File: figures/mean_median_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_median_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_median_error-eps-converted-to.pdf used on
- input line 242.
+ input line 244.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_median_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -724,7 +728,7 @@ Package epstopdf Info: Source file: <figures/mean_median_variance.eps>
 (epstopdf)                    size: 5074 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_median_varian
 ce-eps-converted-to.pdf figures/mean_median_variance.eps>
-(epstopdf)             \includegraphics on input line 247.
+(epstopdf)             \includegraphics on input line 249.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_median_variance-eps-converted-to.pdf, id=65, 505.89pt x 722.7pt>
@@ -733,7 +737,7 @@ File: figures/mean_median_variance-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_median_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_median_variance-eps-converted-to.pdf used
- on input line 247.
+ on input line 249.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_bilat_error.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -744,7 +748,7 @@ pdf>
 (epstopdf)                    size: 5139 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_bilat_error-e
 ps-converted-to.pdf figures/mean_bilat_error.eps>
-(epstopdf)             \includegraphics on input line 258.
+(epstopdf)             \includegraphics on input line 260.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_bilat_error-eps-converted-to.pdf, id=66, 505.89pt x 722.7pt>
@@ -752,7 +756,7 @@ File: figures/mean_bilat_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_bilat_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_bilat_error-eps-converted-to.pdf used on 
-input line 258.
+input line 260.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_bilat_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -763,7 +767,7 @@ to.pdf>
 (epstopdf)                    size: 5124 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_bilat_varianc
 e-eps-converted-to.pdf figures/mean_bilat_variance.eps>
-(epstopdf)             \includegraphics on input line 263.
+(epstopdf)             \includegraphics on input line 265.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_bilat_variance-eps-converted-to.pdf, id=67, 505.89pt x 722.7pt>
@@ -771,7 +775,7 @@ File: figures/mean_bilat_variance-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_bilat_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_bilat_variance-eps-converted-to.pdf used 
-on input line 263.
+on input line 265.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_median10_error.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -782,7 +786,7 @@ to.pdf>
 (epstopdf)                    size: 5151 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_median10_erro
 r-eps-converted-to.pdf figures/mean_median10_error.eps>
-(epstopdf)             \includegraphics on input line 274.
+(epstopdf)             \includegraphics on input line 276.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_median10_error-eps-converted-to.pdf, id=68, 505.89pt x 722.7pt>
@@ -790,7 +794,7 @@ File: figures/mean_median10_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_median10_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_median10_error-eps-converted-to.pdf used 
-on input line 274.
+on input line 276.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_median10_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -801,7 +805,7 @@ ed-to.pdf>
 (epstopdf)                    size: 5239 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_median10_vari
 ance-eps-converted-to.pdf figures/mean_median10_variance.eps>
-(epstopdf)             \includegraphics on input line 279.
+(epstopdf)             \includegraphics on input line 281.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_median10_variance-eps-converted-to.pdf, id=69, 505.89pt x 722.7pt
@@ -810,7 +814,7 @@ File: figures/mean_median10_variance-eps-converted-to.pdf Graphic file (type pd
 f)
  <use figures/mean_median10_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_median10_variance-eps-converted-to.pdf us
-ed on input line 279.
+ed on input line 281.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_mean10_error.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -821,7 +825,7 @@ Package epstopdf Info: Source file: <figures/mean_mean10_error.eps>
 (epstopdf)                    size: 5141 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_mean10_error-
 eps-converted-to.pdf figures/mean_mean10_error.eps>
-(epstopdf)             \includegraphics on input line 290.
+(epstopdf)             \includegraphics on input line 292.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_mean10_error-eps-converted-to.pdf, id=70, 505.89pt x 722.7pt>
@@ -829,7 +833,7 @@ File: figures/mean_mean10_error-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_mean10_error-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_mean10_error-eps-converted-to.pdf used on
- input line 290.
+ input line 292.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
 Package epstopdf Info: Source file: <figures/mean_mean10_variance.eps>
 (epstopdf)                    date: 2015-12-07 00:53:34
@@ -840,7 +844,7 @@ Package epstopdf Info: Source file: <figures/mean_mean10_variance.eps>
 (epstopdf)                    size: 5076 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mean_mean10_varian
 ce-eps-converted-to.pdf figures/mean_mean10_variance.eps>
-(epstopdf)             \includegraphics on input line 295.
+(epstopdf)             \includegraphics on input line 297.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mean_mean10_variance-eps-converted-to.pdf, id=71, 505.89pt x 722.7pt>
@@ -849,7 +853,7 @@ File: figures/mean_mean10_variance-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mean_mean10_variance-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mean_mean10_variance-eps-converted-to.pdf used
- on input line 295.
+ on input line 297.
 (pdftex.def)             Requested size: 156.84743pt x 224.06548pt.
  [9 <./figures/depth_MovingMeanFilter.png (PNG copy)>] [10 <./figures/mean_gaus
 s_error-eps-converted-to.pdf> <./figures/mean_gauss_variance-eps-converted-to.p
@@ -863,8 +867,8 @@ an10_variance-eps-converted-to.pdf>] <figures/depth_Original_spice.png, id=131,
 File: figures/depth_Original_spice.png Graphic file (type png)
 
 <use figures/depth_Original_spice.png>
-Package pdftex.def Info: figures/depth_Original_spice.png used on input line 30
-9.
+Package pdftex.def Info: figures/depth_Original_spice.png used on input line 31
+1.
 (pdftex.def)             Requested size: 358.50612pt x 268.88719pt.
 
 <figures/depth_GaussianBlur_spice.png, id=132, 642.4pt x 481.8pt>
@@ -872,7 +876,7 @@ File: figures/depth_GaussianBlur_spice.png Graphic file (type png)
 
 <use figures/depth_GaussianBlur_spice.png>
 Package pdftex.def Info: figures/depth_GaussianBlur_spice.png used on input lin
-e 319.
+e 321.
 (pdftex.def)             Requested size: 179.25305pt x 134.43991pt.
 
 <figures/depth_medianBlur_spice.png, id=133, 642.4pt x 481.8pt>
@@ -880,7 +884,7 @@ File: figures/depth_medianBlur_spice.png Graphic file (type png)
 
 <use figures/depth_medianBlur_spice.png>
 Package pdftex.def Info: figures/depth_medianBlur_spice.png used on input line 
-325.
+327.
 (pdftex.def)             Requested size: 179.25305pt x 134.43991pt.
 
 <figures/depth_bilateral_spice.png, id=134, 642.4pt x 481.8pt>
@@ -888,7 +892,7 @@ File: figures/depth_bilateral_spice.png Graphic file (type png)
 
 <use figures/depth_bilateral_spice.png>
 Package pdftex.def Info: figures/depth_bilateral_spice.png used on input line 3
-40.
+42.
 (pdftex.def)             Requested size: 179.25305pt x 134.43991pt.
 
 <figures/depth_MovingMedianFilter_spice.png, id=135, 642.4pt x 481.8pt>
@@ -896,7 +900,7 @@ File: figures/depth_MovingMedianFilter_spice.png Graphic file (type png)
 
 <use figures/depth_MovingMedianFilter_spice.png>
 Package pdftex.def Info: figures/depth_MovingMedianFilter_spice.png used on inp
-ut line 346.
+ut line 348.
 (pdftex.def)             Requested size: 179.25305pt x 134.43991pt.
  [12 <./figures/depth_Original_spice.png (PNG copy)> <./figures/depth_GaussianB
 lur_spice.png (PNG copy)> <./figures/depth_medianBlur_spice.png (PNG copy)>]
@@ -905,7 +909,7 @@ File: figures/depth_MovingMeanFilter_spice.png Graphic file (type png)
 
 <use figures/depth_MovingMeanFilter_spice.png>
 Package pdftex.def Info: figures/depth_MovingMeanFilter_spice.png used on input
- line 357.
+ line 359.
 (pdftex.def)             Requested size: 224.06548pt x 168.04439pt.
  [13 <./figures/depth_bilateral_spice.png (PNG copy)> <./figures/depth_MovingMe
 dianFilter_spice.png (PNG copy)> <./figures/depth_MovingMeanFilter_spice.png (P
@@ -915,20 +919,20 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5620 strings out of 494953
- 91354 string characters out of 6178088
- 191469 words of memory out of 5000000
- 8768 multiletter control sequences out of 15000+600000
+ 5698 strings out of 494953
+ 92315 string characters out of 6178088
+ 192556 words of memory out of 5000000
+ 8842 multiletter control sequences out of 15000+600000
  9235 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 54i,10n,51p,738b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,10n,51p,798b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (13 pages, 2207129 bytes).
+Output written on Report.pdf (13 pages, 2208767 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  100 compressed objects within 1 object stream
