@@ -17,8 +17,12 @@ For this lab, the ASUS Xtion Pro sensor was used as a structured light camera.
 \section{Task and implementation}
 The task at hand was to set up and calibrating the sensor, as well as to characterize the noise in the depth measurement and to set up filtering routines.
 \subsection{Basic setup}
-To set up the camera, the package \texttt{openni2} for ros-indigo was used. When launching the node \texttt{openni2.launch}, it publishes a wide range of topics from the camera.\par %TODO: Maybe list ALL the topics?
+To set up the camera, the package \texttt{openni2} for ros-indigo was used. %When launching the node \texttt{openni2.launch}
+When starting the openni ROS drivers for the camera it publishes a wide range of topics from the camera.\par %TODO: Maybe list ALL the topics?
 For this laboration, only the topics which publish a viewable image were of interest. This included two main topics:%TODO: Explain the opencv stuff
+
+%/camera/rgb/image_raw ?
+%/camera/rgb/image_rect ?
 
 \begin{itemize}
   \item \texttt{/camera/rgb/}\\
@@ -75,12 +79,14 @@ After the basic setup, a ROS node template was used as a base to process the ima
 \subsection{Noise characterization}
 \label{sec:noise_characterization}
 %Modify your ROS node to observe a small window of depth image pixels around the center of the image.  Compute average and standard deviation distances for measurements within the window
-In this part we cropped small windows of varying sizes in the center of the depth image. Then the camera was placed in several known distances from a wall and the average and standard deviation of the depth values in the cropped images were recorded.\par
+In this part we cropped small windows of varying sizes in the center of the depth image. The camera was then placed at distances varying from 0.6 to 2.0 meters as measured by measuring tape. The mean and variance of the distance values was then calculated from the depth values for the different cropped windows.
+%Then the camera was placed in several known distances from a wall and the average and standard deviation of the depth values in the cropped images were recorded.\par
+
 The mean error of 10 seconds of measurement in relation to the distance is shown in figure \ref{fig:mean_error}. The variances are shown in figure \ref{fig:variance}.\par
 \begin{figure}[h!tbp]
   \centering
   \includegraphics[height=0.8\textwidth,angle=270]{figures/mean_org_error.eps}
-  \caption{Mean absolute error of the mean depth in relation to the ground truth distance}
+  \caption{Mean absolute error in meters of the mean depth in relation to the ground truth distance}
   \label{fig:mean_error}
 \end{figure}
 \begin{figure}[h!tbp]
@@ -89,7 +95,9 @@ The mean error of 10 seconds of measurement in relation to the distance is shown
   \caption{Mean of the variance of the depth in relation to the ground truth distance}
   \label{fig:variance}
 \end{figure}
-Analysing the mean error (fig. \ref{fig:mean_error}), one can see that the error values diverge with the error size and the distance to the wall. The high error values under 1 meter are expected to be caused by errors in the ground truth measurement, since the measuring tools at hand weren't optimal. The variance values also increase with the ground truth distance.\par
+Analysing the mean error (fig. \ref{fig:mean_error}), one can see that the error values diverge with the error size and the distance to the wall. Since we have error in both the ground truth distance value and in the distances measured by the camera it is hard to tell were the error comes from. But if we model our ground truth error as a constant plus a normal distributed random error proportional to the distance to the wall the absolute ground truth error would grow with increased distance. But since our error decreases with distance the error below one meter is possibly a systematic error in the depth measurement. More precise ground truth measurements are required to determine if so is the case.
+%$a + bx$ where $a$ is an unknown offset from the front of the camera and $bx$ as 
+%The high error values under one meter are expected to be caused by errors in the ground truth measurement, since the measuring tools at hand weren't optimal. The variance values also increase with the ground truth distance.\par
  The diverging error values and increasing variances can be explained by the geometric characteristics of the measurement (see fig.\ref{fig:geometric_representation}).
 \begin{figure}[!ht]
   \centering
@@ -134,7 +142,8 @@ The effect on the image data after the application of the filters will be discus
 \end{figure}
 
 \paragraph{Gaussian blur}
-The gaussian blur filter (fig. \ref{fig:gaussian_blur}) blurs the contours of the observed objects. Additionally, the pixels with \texttt{NaN} values reproduce and strongly disturb the algorithm. This can be explained as every kernel containing a \texttt{NaN} value gives every pixel in the whole kernel a \texttt{NaN} value. This also explains the ``blocky'' artifacts in areas which originally contained small \texttt{NaN} speckles.
+The gaussian blur filter (fig. \ref{fig:gaussian_blur}) blurs the contours of the observed objects. Additionally, the pixels with \texttt{NaN} values reproduce and strongly disturb the algorithm. This can be explained as anytime one of the pixels in the kernel is a \texttt{NaN} value, the resulting  output pixel also become \texttt{NaN}, regardless of any other pixel's value. This also explains the ``blocky'' artifacts in areas which originally contained small \texttt{NaN} speckles.
+%as every kernel containing a \texttt{NaN} value gives every pixel in the whole kernel a \texttt{NaN} value. This also explains the ``blocky'' artifacts in areas which originally contained small \texttt{NaN} speckles.
 \begin{figure}[h!tbp]
   \centering
   \begin{minipage}{.5\textwidth}
@@ -170,7 +179,7 @@ The median filter (fig. \ref{fig:median_depth}) doesn't show a big difference to
 
 \paragraph{Bilateral filter}
 The bilateral filter (fig. \ref{fig:bilateral_depth}) blurs the contours of the objects. Otherwise, no remarkable differences to the original image are discernible.\par
-In order for this filter not to produce very artifact-prone images, the \texttt{NaN}-values had to be adjusted. We chose to replace the \texttt{NaN}-values with entries of depth 0.
+In order for this filter not to produce very artifact-prone images, the \texttt{NaN}-values had to be adjusted. Before applying the the filter we replace all \texttt{NaN} values with values ether from the left or from above of the \texttt{NaN} value. After running the filter on the image we reapplied all \texttt{NaN} from the original image to the filtered image. This technique is not ideal since it can produce strange values new edges of large blocks of \texttt{NaN} values. Preferable you would modify the bilateral filter to return \texttt{NaN} of it encountered any \texttt{NaN} value in the kernel. %We chose to replace the \texttt{NaN}-values with entries of depth 0.
 \begin{figure}[h!tbp]
   \begin{minipage}{.5\textwidth}
     \centering
@@ -186,9 +195,9 @@ In order for this filter not to produce very artifact-prone images, the \texttt{
   \end{minipage}
 \end{figure}
 \paragraph{Median over several image samples}
-The moving median image (fig. \ref{fig:moving_median_depth}) leaves the contours visible and removes smaller spots with \texttt{NaN} values.
+The moving median image (fig. \ref{fig:moving_median_depth}) leaves the contours visible and removes smaller spots with \texttt{NaN} values. Works well as long as the image doesn't change quickly.
 \paragraph{Mean over several image samples}
-The moving mean image (fig. \ref{fig:moving_mean_depth}) blurs the contours of the objects (although not as strongly as previous contour blurring algorithms). It also removes small speckles of \texttt{NaN} values.
+The moving mean image (fig. \ref{fig:moving_mean_depth}) blurs the contours of the objects (although not as strongly as previous contour blurring algorithms). It also removes small speckles of \texttt{NaN} values. Works well as long as the image doesn't change quickly.
 \begin{figure}[h!tbp]
   \centering
   \includegraphics[width=.5\textwidth]{depth_MovingMeanFilter.png}
@@ -343,8 +352,8 @@ The bilateral filter (fig. \ref{fig:bilateral_depth_spice}) decreases the influe
 \end{figure}
 \paragraph{Median over several image samples}
 The bilateral filter (fig. \ref{fig:moving_median_depth_spice}) removes the salt and pepper speckles reliably.
-\paragraph{Average over several image samples}
-The bilateral filter (fig. \ref{fig:moving_mean_depth_spice}) accumulates the salt and pepper speckles of all recorded images. Although the speckles overall are more dull, their amount increased, still showing a considerable amount of noise.
+\paragraph{Mean over several image samples}
+The moving mean filter (fig. \ref{fig:moving_mean_depth_spice}) accumulates the salt and pepper speckles of all recorded images. Although the speckles overall are more dull, their amount increased, still showing a considerable amount of noise.
 \begin{figure}[h!tbp]
   \centering
   \includegraphics[width=.5\textwidth]{depth_MovingMeanFilter_spice.png}
