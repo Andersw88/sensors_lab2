@@ -10,7 +10,12 @@
 
 \begin{document}
 \maketitle
-
+\begin{center}
+  \emph{All code for this exercise can be found at \\ \url{https://github.com/Andersw88/sensors_lab2}}
+\end{center}
+\tableofcontents
+\listoffigures
+\vspace{20mm}
 \section{Introduction: Structured light cameras}
 Structured light cameras are a low-cost option for depth measuring in three dimensional space. The cameras project a known light pattern to a scene and record the reflection of that light pattern. This recorded data is then used for triangulation.\par
 For this lab, the ASUS Xtion Pro sensor was used as a structured light camera.
@@ -58,6 +63,7 @@ For this laboration, only the topics which publish a viewable image were of inte
 \subsection{Basic ROS node}
 \label{sec:basic-ros}
 After the basic setup, a ROS node template was used as a base to process the images and point clouds published. The received images are shown in figure \ref{fig:rgb-raw} and figure \ref{fig:original_depth}.
+\newpage
 \subsection{Color camera calibration}
 \label{sec:calibration}
 In this part the color camera was calibrated using a checkers board print. The camera calibration is used to remove distortion in the image caused by imperfection in the camera such as the lens not being perfectly aligned to the center. The ROS package camera\_calibration was used to obtain the calibration values for the camera. To do the calibration we moved the board around within the cameras field of vision make it gather data points. The output is a set of parameters that tries to minimize the distortions when applied to images of real world objects such as the checkers board. More detailed information on the calibration process can be accessed through the following url: \url{http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration}
@@ -68,13 +74,13 @@ The improvement of the calibrated picture isn't quantitatively measurable with t
 %Nevertheless, there is a difference in straightness of the lines visible between the pictures.
 \begin{figure}[h!tbp]
   \centering
-  \includegraphics[width=\defaultwidth]{checkers-uncalibrated.png}
+  \includegraphics[width=.7\textwidth]{checkers-uncalibrated.png}
   \caption{Uncalibrated checkers board image}
   \label{fig:checkers_board_uncalibrated}
 \end{figure}
 \begin{figure}[h!tbp]
   \centering
-  \includegraphics[width=\defaultwidth]{checkers-calibrated.png}
+  \includegraphics[width=.7\textwidth]{checkers-calibrated.png}
   \caption{Calibrated checkers board image}
   \label{fig:checkers_board_calibrated}
 \end{figure}

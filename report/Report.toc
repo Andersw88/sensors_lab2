@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction: Structured light cameras}{2}
+\contentsline {section}{\numberline {2}Task and implementation}{2}
+\contentsline {subsection}{\numberline {2.1}Basic setup}{2}
+\contentsline {subsection}{\numberline {2.2}Basic ROS node}{3}
+\contentsline {subsection}{\numberline {2.3}Color camera calibration}{5}
+\contentsline {subsection}{\numberline {2.4}Noise characterization}{6}
+\contentsline {subsection}{\numberline {2.5}Noise filtering}{8}
+\contentsline {subsubsection}{\numberline {2.5.1}Filter effects}{8}
+\contentsline {paragraph}{\nonumberline Gaussian blur}{8}
+\contentsline {paragraph}{\nonumberline Median filter}{9}
+\contentsline {paragraph}{\nonumberline Bilateral filter}{9}
+\contentsline {paragraph}{\nonumberline Median over several image samples}{9}
+\contentsline {paragraph}{\nonumberline Mean over several image samples}{10}
+\contentsline {subsubsection}{\numberline {2.5.2}Filters and distance error}{11}
+\contentsline {paragraph}{\nonumberline Gaussian filter}{11}
+\contentsline {paragraph}{\nonumberline Median filter}{11}
+\contentsline {paragraph}{\nonumberline Bilateral filter}{11}
+\contentsline {paragraph}{\nonumberline Mean over several image samples}{11}
+\contentsline {paragraph}{\nonumberline Median over several image samples}{11}
+\contentsline {subsubsection}{\numberline {2.5.3}Salt-and-pepper removal properties}{13}
+\contentsline {paragraph}{\nonumberline Gaussian blur}{14}
+\contentsline {paragraph}{\nonumberline Median filter}{14}
+\contentsline {paragraph}{\nonumberline Bilateral filter}{14}
+\contentsline {paragraph}{\nonumberline Median over several image samples}{14}
+\contentsline {paragraph}{\nonumberline Mean over several image samples}{14}

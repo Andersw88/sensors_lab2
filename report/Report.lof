@@ -1,0 +1,26 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Output image of \texttt {/camera/rgb/raw}\relax }}{3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Original depth image\relax }}{4}
+\contentsline {figure}{\numberline {3}{\ignorespaces Screenshot of the vizualized pointcloud of \texttt {/camera/depth\_registered}\relax }}{4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Uncalibrated checkers board image\relax }}{5}
+\contentsline {figure}{\numberline {5}{\ignorespaces Calibrated checkers board image\relax }}{6}
+\contentsline {figure}{\numberline {6}{\ignorespaces Mean absolute error in meters of the mean depth in relation to the ground truth distance\relax }}{7}
+\contentsline {figure}{\numberline {7}{\ignorespaces Mean of the variance of the depth in relation to the ground truth distance\relax }}{7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Schematic of the distance measurement\relax }}{8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Gaussian blur\relax }}{8}
+\contentsline {figure}{\numberline {10}{\ignorespaces Median filter\relax }}{8}
+\contentsline {figure}{\numberline {11}{\ignorespaces Median filter\relax }}{9}
+\contentsline {figure}{\numberline {12}{\ignorespaces Bilateral filter\relax }}{9}
+\contentsline {figure}{\numberline {13}{\ignorespaces Bilateral filter\relax }}{9}
+\contentsline {figure}{\numberline {14}{\ignorespaces Moving median image\relax }}{9}
+\contentsline {figure}{\numberline {15}{\ignorespaces Moving mean image\relax }}{10}
+\contentsline {figure}{\numberline {16}{\ignorespaces Gaussian filter on distance measurement\relax }}{11}
+\contentsline {figure}{\numberline {17}{\ignorespaces Median filter on distance measurement\relax }}{12}
+\contentsline {figure}{\numberline {18}{\ignorespaces Bilateral filter on distance measurement\relax }}{12}
+\contentsline {figure}{\numberline {19}{\ignorespaces Running median of the distance measurement\relax }}{12}
+\contentsline {figure}{\numberline {20}{\ignorespaces Running mean of the distance measurement\relax }}{13}
+\contentsline {figure}{\numberline {21}{\ignorespaces Original depth image with salt and pepper\relax }}{13}
+\contentsline {figure}{\numberline {22}{\ignorespaces Gaussian blur with salt and pepper\relax }}{14}
+\contentsline {figure}{\numberline {23}{\ignorespaces Median filter with salt and pepper\relax }}{14}
+\contentsline {figure}{\numberline {24}{\ignorespaces Bilateral filter with salt and pepper\relax }}{14}
+\contentsline {figure}{\numberline {25}{\ignorespaces Moving median image with salt and pepper\relax }}{14}
+\contentsline {figure}{\numberline {26}{\ignorespaces Moving mean image with salt and pepper\relax }}{15}
