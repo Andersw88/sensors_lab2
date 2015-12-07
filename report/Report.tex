@@ -60,10 +60,12 @@ For this laboration, only the topics which publish a viewable image were of inte
 After the basic setup, a ROS node template was used as a base to process the images and point clouds published. The received images are shown in figure \ref{fig:rgb-raw} and figure \ref{fig:original_depth}.
 \subsection{Color camera calibration}
 \label{sec:calibration}
-In this part the color camera was calibrated using a checkers board print. The checkers board. %TODO
+In this part the color camera was calibrated using a checkers board print. Camera calibration is used to remove distortion in the image caused by imperfection in the camera such as the lens not being perfectly aligned to the center. We used the ROS package camera\_calibration to obtain the calibration values for the camera. To do the calibration we moved the board around within the cameras field of vision make it gather data points. The output is a set of parameters that tries to minimize the distortions when applied to images of real world objects such as the checkers board.
 \par
-The improvement of the calibrated picture isn't qantitavely measurable with the tools at hand, so the verification has to be carried out with judgement by the naked eye. Still, the difference is barely visible, which can be explained by the low correction values. %TODO
-Nevertheless, there is a difference in straightness of the lines visible between the pictures.
+The improvement of the calibrated picture isn't quantitatively measurable with the tools at hand, so the verification has to be carried out with judgment by the naked eye. It is possible to see a small difference between the images, but it seems like the calibration only added distortions. In the original image figure \ref{fig:checkers_board_uncalibrated} no errors can be seen but in figure \ref{fig:checkers_board_calibrated} we can see a distortion at the bottom of the image.
+
+%Still, the difference is barely visible, which can be explained by the low correction values.  %TODO
+%Nevertheless, there is a difference in straightness of the lines visible between the pictures.
 \begin{figure}[h!tbp]
   \centering
   \includegraphics[width=\defaultwidth]{checkers-uncalibrated.png}
@@ -177,7 +179,7 @@ The median filter (fig. \ref{fig:median_depth}) doesn't show a big difference to
 
 \paragraph{Bilateral filter}
 The bilateral filter (fig. \ref{fig:bilateral_depth}) blurs the contours of the objects. Otherwise, no remarkable differences to the original image are discernible.\par
-In order for this filter not to produce very artifact-prone images, the \texttt{NaN}-values had to be adjusted. Before applying the the filter all \texttt{NaN} values were replaced with values either from the left or from above of the \texttt{NaN} value. After running the filter on the image the \texttt{NaN} values from the original where reapplied to the filtered image. This technique is not ideal since it can produce strange values new edges of large blocks of \texttt{NaN} values. It would have been also possible to modify the bilateral filter to return \texttt{NaN} if it encounters any \texttt{NaN} value in the kernel. %We chose to replace the \texttt{NaN}-values with entries of depth 0.
+In order for this filter not to produce very artifact-prone images, the \texttt{NaN}-values had to be adjusted. Before applying the filter all \texttt{NaN} values were replaced with values either from the left or from above of the \texttt{NaN} value. After running the filter on the image the \texttt{NaN} values from the original where reapplied to the filtered image. This technique is not ideal since it can produce strange values new edges of large blocks of \texttt{NaN} values. It would have been also possible to modify the bilateral filter to return \texttt{NaN} if it encounters any \texttt{NaN} value in the kernel. %We chose to replace the \texttt{NaN}-values with entries of depth 0.
 \begin{figure}[h!tbp]
   \begin{minipage}{.5\textwidth}
     \centering
